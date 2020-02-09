@@ -28,6 +28,14 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    zipAfterPublish: false
+
+
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
@@ -38,4 +46,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Prod2artifacts'
     publishLocation: 'Container'
-
